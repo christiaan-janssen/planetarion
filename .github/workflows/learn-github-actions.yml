@@ -8,11 +8,9 @@ jobs:
         needs: deps
         runs-on: ubuntu-latest
         steps:
-        - uses: actions/checkout@v1
-        - name: Build
-          env:
-            CC: clang
-        - run: |
+        - name: deps
+          uses: actions/checkout@v1
+          run: |
               sudo apt install libasound2-dev mesa-common-dev libx11-dev libxrandr-dev libxi-dev xorg-dev libgl1-mesa-dev libglu1-mesa-dev
               git clone https://github.com/raysan5/raylib.git raylib
               cd raylib
@@ -20,5 +18,9 @@ jobs:
               cmake -DBUILD_SHARED_LIBS=ON ..
               make
               sudo make install
-        - run: make
+        - name: Build
+          uses: actions/checkout@v1
+          env:
+            CC: clang
+          run: make
 
