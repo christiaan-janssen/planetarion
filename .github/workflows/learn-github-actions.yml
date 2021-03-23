@@ -10,7 +10,7 @@ jobs:
         - uses: actions/checkout@v1
         - name: install deps
           run: |
-              apt install raylib
+              sudo apt install raylib
     build:
         runs-on: ubuntu-latest
         steps:
